@@ -20,7 +20,6 @@ func Students() {
 		if len(studentGrades) == 0 {
 			fmt.Println("This student doesn't have grades")
 		} else {
-
 			fmt.Printf("%s: %d\n", key, Max(studentGrades))
 		}
 	}

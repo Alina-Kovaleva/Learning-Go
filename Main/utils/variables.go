@@ -6,7 +6,6 @@ func Variables() {
 	a := 5
 	b := 5
 	if a < b {
-		// fmt.Printf("%.2f", float64(a/b))
 		fmt.Printf("%.2f", float64(a)/float64(b))
 	} else if b < a {
 		fmt.Println(a << b)

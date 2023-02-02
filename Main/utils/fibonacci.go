@@ -9,9 +9,7 @@ func Fibonacci() {
 		res = append(res, fib(i))
 	}
 	fmt.Println(res)
-
 	fmt.Println(fib1(10))
-
 }
 
 func fib(n int) int {
