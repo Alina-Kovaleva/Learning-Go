@@ -31,35 +31,6 @@ func PromptFloat(question string) float64 {
 	}
 }
 
-// func PromptOperator(question string) (string, func(float64, float64) float64) {
-// 	for {
-// 		scanner := bufio.NewScanner(os.Stdin)
-// 		fmt.Print(question)
-// 		scanner.Scan()
-// 		operator := scanner.Text()
-// 		switch operator {
-// 		case "+":
-// 			return operator, func(a float64, b float64) float64 {
-// 				return a + b
-// 			}
-// 		case "-":
-// 			return operator, func(a float64, b float64) float64 {
-// 				return a - b
-// 			}
-// 		case "*":
-// 			return operator, func(a float64, b float64) float64 {
-// 				return a * b
-// 			}
-// 		case "/":
-// 			return operator, func(a float64, b float64) float64 {
-// 				return a / b
-// 			}
-// 		default:
-// 			fmt.Println("Invalid operator")
-// 		}
-// 	}
-// }
-
 func PromptOperator(question string) (string, func(float64, float64) float64) {
 	for {
 		scanner := bufio.NewScanner(os.Stdin)
