@@ -20,12 +20,13 @@ func main() {
 	totalArea := wallLength * wallHeight
 	paintedArea := totalArea - windowsArea - doorsArea
 
-	coverinPerCan := consumption * literPerCan
+	if paintedArea <= 0 {
+		fmt.Println("Oops, it looks like there's an error. The combined area of your doors and windows appears to be larger than the total area of the room.")
+	} else {
+		coverinPerCan := consumption * literPerCan
+		totalCans := math.Ceil((paintedArea / coverinPerCan) * coats)
+		totalCost := totalCans * pricePerCan
 
-	totalCans := math.Ceil((paintedArea / coverinPerCan) * coats)
-
-	totalCost := totalCans * pricePerCan
-
-	fmt.Printf("You will need %.0f cans of paint and it will cost %.2f", totalCans, totalCost)
-
+		fmt.Printf("You will need %.0f cans of paint and it will cost %.2f", totalCans, totalCost)
+	}
 }
