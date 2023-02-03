@@ -2,20 +2,22 @@ package main
 
 import (
 	"fmt"
-	"github.com/Alina-Kovaleva/paintingcalculator/utils"
 	"math"
+
+	"github.com/Alina-Kovaleva/paintingcalculator/utils"
 )
 
+// anything
 func main() {
 	for {
 		wallLength := utils.UserInput("Enter the combined length of all walls (in meters): ", false)
 		wallHeight := utils.UserInput("Enter the height of the wall (in meters): ", false)
 		windowsArea := utils.UserInput("Enter the total area of windows (in square meters): ", true)
 		doorsArea := utils.UserInput("Enter the total area of doors (in square meters): ", false)
-	
+
 		totalArea := wallLength * wallHeight
 		paintedArea := totalArea - windowsArea - doorsArea
-	
+
 		if paintedArea <= 0 {
 			fmt.Println("Oops, it looks like there's an error. The combined area of your doors and windows appears to be larger than the total area of the room.\nTry one more time!")
 			continue
@@ -27,7 +29,7 @@ func main() {
 			coverinPerCan := consumption * literPerCan
 			totalCans := math.Ceil((paintedArea / coverinPerCan) * coats)
 			totalCost := totalCans * pricePerCan
-	
+
 			fmt.Printf("You will need %.0f cans of paint and it will cost %.2f", totalCans, totalCost)
 			break
 		}
