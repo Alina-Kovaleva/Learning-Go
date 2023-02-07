@@ -1,17 +1,26 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
-func FizzBuzz() {
-	for i := 1; i <= 100; i++ {
-		if i%3 == 0 && i%5 == 0 {
-			fmt.Println("FizzBuzz")
-		} else if i%3 == 0 {
-			fmt.Println("Fizz")
-		} else if i%5 == 0 {
-			fmt.Println("Buzz")
-		} else {
-			fmt.Println(i)
-		}
+func FizzBuzz(a int) string {
+	// for i := 1; i <= 100; i++ {
+	if a%3 == 0 && a%5 == 0 {
+		fmt.Println("FizzBuzz")
+		return "FizzBuzz"
+	} else if a%3 == 0 {
+		fmt.Println("Fizz")
+		return "Fizz"
+	} else if a%5 == 0 {
+		// fmt.Println("Buzz")
+		return "Buzz"
+
 	}
+	// else {
+	// 	fmt.Println(a)
+	// }
+	return strconv.Itoa(a)
+	// }
 }
