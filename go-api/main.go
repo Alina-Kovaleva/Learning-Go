@@ -25,14 +25,23 @@ type Pokemon struct {
 	Id     int    `json:"id"`
 	Name   string `json:"name"`
 	Weight int    `json:"weight"`
-	Types  []struct {
+	Height int    `json:"height"`
+	Stats  []struct {
+		BaseStat int `json:"base_stat"`
+		Stat     struct {
+			Name string `json:"name"`
+		} `json:"stat"`
+	} `json:"stats"`
+	Types []struct {
 		Type struct {
 			Name string `json:"name"`
 		} `json:"type"`
 	} `json:"types"`
 	Sprites struct {
-		FrontImgUrl string `json:"front_shiny"`
-		BackImgUrl  string `json:"back_shiny"`
+		BackDefault  string `json:"back_default"`
+		FrontDefault string `json:"front_default"`
+		FrontShiny   string `json:"front_shiny"`
+		BackShiny    string `json:"back_shiny"`
 	} `json:"sprites"`
 }
 
