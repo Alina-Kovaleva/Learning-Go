@@ -4,6 +4,7 @@ import (
 	"errors"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -38,6 +39,7 @@ func CreateActor(w http.ResponseWriter, r *http.Request) {
 	var data ActorRequest
 	if err := render.Bind(r, &data); err != nil {
 		render.Render(w, r, e.ErrInvalidRequest(err))
+		return
 	}
 
 	actor := data.Actor
@@ -84,34 +86,57 @@ func DeleteActor(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateActor(w http.ResponseWriter, r *http.Request) {
-	var data ActorRequest
+	var data ActorUpdateRequest
 	if err := render.Bind(r, &data); err != nil {
 		render.Render(w, r, e.ErrInvalidRequest(err))
+		return
 	}
-	actor := data.Actor
+
+	actorUpdate := data.ActorUpdate
+
+	log.Println(actorUpdate)
+
+	if actorUpdate.FirstName == nil && actorUpdate.LastName == nil {
+		render.Render(w, r, e.ErrInvalidRequest(errors.New("either First Name or Last Name is required")))
+		return
+	}
+
+	if actorUpdate.FirstName != nil && actorUpdate.LastName != nil {
+		if *actorUpdate.FirstName == "" && *actorUpdate.LastName == "" {
+			render.Render(w, r, e.ErrInvalidRequest(errors.New("either First Name or Last Name is required")))
+			return
+		}
+
+	}
 
 	id := chi.URLParam(r, "id")
 
-	var updatedActor models.Actor
+	var originalActor models.Actor
 
-	result := db.DB.First(&updatedActor, id)
+	result := db.DB.First(&originalActor, id)
 	if result.Error != nil {
 		render.Render(w, r, e.ErrInvalidRequest(result.Error))
 		return
 	}
 
-	if actor.FirstName == "" && actor.LastName == "" {
+	if actorUpdate.FirstName != nil {
+		originalActor.FirstName = strings.ToUpper(*actorUpdate.FirstName)
+	}
+
+	if actorUpdate.LastName != nil {
+		originalActor.LastName = strings.ToUpper(*actorUpdate.LastName)
+	}
+
+	if originalActor.FirstName == "" && originalActor.LastName == "" {
 		render.Render(w, r, e.ErrInvalidRequest(errors.New("either First Name or Last Name is required")))
 		return
 	}
 
-	updatedActor.FirstName = actor.FirstName
-	updatedActor.LastName = actor.LastName
-	updatedActor.LastUpdate = time.Now()
+	originalActor.LastUpdate = time.Now()
 
-	db.DB.Save(&updatedActor)
+	db.DB.Save(&originalActor)
 
 	log.Println("Actor's info was updated")
-	render.Render(w, r, NewActorResponse(&updatedActor))
+	render.Render(w, r, NewActorResponse(&originalActor))
 	render.Status(r, http.StatusNoContent)
 }

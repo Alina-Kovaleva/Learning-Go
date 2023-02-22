@@ -9,15 +9,17 @@ import (
 	"tsi.co/go-chi-sakila/resources/models"
 )
 
-// type Actor struct {
-// 	ActorId    int       `gorm:"type:smallint;primaryKey"`
-// 	FirstName  string    `gorm:"type:varchar(45)"`
-// 	LastName   string    `gorm:"type:varchar(45)"`
-// 	LastUpdate time.Time `gorm:"autoCreateTime"`
-// }
+type ActorUpdate struct {
+	FirstName *string
+	LastName  *string
+}
 
 type ActorRequest struct {
 	*models.Actor
+}
+
+type ActorUpdateRequest struct {
+	*ActorUpdate
 }
 
 func (a *ActorRequest) Bind(r *http.Request) error {
@@ -28,6 +30,13 @@ func (a *ActorRequest) Bind(r *http.Request) error {
 	a.Actor.FirstName = strings.ToUpper(a.Actor.FirstName)
 	a.Actor.LastName = strings.ToUpper(a.Actor.LastName)
 
+	return nil
+}
+
+func (a *ActorUpdateRequest) Bind(r *http.Request) error {
+	if a.ActorUpdate == nil {
+		return errors.New("missing required Actor fields")
+	}
 	return nil
 }
 

@@ -36,6 +36,7 @@ func CreateFilm(w http.ResponseWriter, r *http.Request) {
 	var data FilmRequest
 	if err := render.Bind(r, &data); err != nil {
 		render.Render(w, r, e.ErrInvalidRequest(err))
+		return
 	}
 
 	film := data.Film
@@ -85,6 +86,7 @@ func UpdateFilm(w http.ResponseWriter, r *http.Request) {
 	var data FilmRequest
 	if err := render.Bind(r, &data); err != nil {
 		render.Render(w, r, e.ErrInvalidRequest(err))
+		return
 	}
 
 	film := data.Film
@@ -99,6 +101,15 @@ func UpdateFilm(w http.ResponseWriter, r *http.Request) {
 
 	if film.Title != "" {
 		updatedFilm.Title = film.Title
+		updatedFilm.Description = film.Description
+		updatedFilm.ReleaseYear = film.ReleaseYear
+		updatedFilm.LanguageID = film.LanguageID
+		updatedFilm.RentalDuration = film.RentalDuration
+		updatedFilm.RentalRate = film.RentalRate
+		updatedFilm.Length = film.Length
+		updatedFilm.ReplacementCost = film.ReplacementCost
+		updatedFilm.Rating = film.Rating
+		updatedFilm.SpecialFeatures = film.SpecialFeatures
 	}
 
 	updatedFilm.LastUpdate = time.Now()
@@ -133,15 +144,3 @@ func GetFilmsByActorId(w http.ResponseWriter, r *http.Request) {
 
 	render.RenderList(w, r, NewFilmListResponse(films))
 }
-
-// Get the actor ID from the URL parameter.
-// actorID := chi.URLParam(r, "id")
-// var actor Actor
-// db.DB.First(&actor, actorID)
-// json.NewDecoder(r.Body).Decode(&actor)
-
-// Uppercase the first name and last name
-// actor.FirstName = strings.ToUpper(actor.FirstName)
-// actor.LastName = strings.ToUpper(actor.LastName)
-// db.DB.Save(&actor)    w.Header().Set("Content-Type", "application/json")
-// json.NewEncoder(w).Encode(actor)

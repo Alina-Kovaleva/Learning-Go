@@ -14,6 +14,7 @@ func CreateFilmActor(w http.ResponseWriter, r *http.Request) {
 	var data FilmActorRequest
 	if err := render.Bind(r, &data); err != nil {
 		render.Render(w, r, e.ErrInvalidRequest(err))
+		return
 	}
 
 	filmActor := data.FilmActor
@@ -34,4 +35,27 @@ func CreateFilmActor(w http.ResponseWriter, r *http.Request) {
 
 	render.Status(r, http.StatusCreated)
 	render.Render(w, r, NewFilmActorResponse(filmActor))
+}
+
+func DeleteFilmActor(w http.ResponseWriter, r *http.Request) {
+	var data FilmActorRequest
+	if err := render.Bind(r, &data); err != nil {
+		render.Render(w, r, e.ErrInvalidRequest(err))
+		return
+	}
+	filmActor := data.FilmActor
+
+	if filmActor.FilmID == 0 || filmActor.ActorID == 0 {
+		render.Render(w, r, e.ErrInvalidRequest(errors.New("both FilmID and ActorID are required")))
+		return
+	}
+
+	var existingFilmActor models.FilmActor
+	if result := db.DB.Where("film_id = ? AND actor_id = ?", filmActor.FilmID, filmActor.ActorID).First(&existingFilmActor); result.Error != nil {
+		render.Render(w, r, e.ErrInvalidRequest(errors.New("filmActor not found")))
+		return
+	}
+
+	db.DB.Delete(&existingFilmActor)
+	render.Status(r, http.StatusNoContent)
 }
