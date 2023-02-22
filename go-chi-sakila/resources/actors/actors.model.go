@@ -4,24 +4,20 @@ import (
 	"errors"
 	"net/http"
 	"strings"
-	"time"
 
 	"github.com/go-chi/render"
+	"tsi.co/go-chi-sakila/resources/models"
 )
 
-type Actor struct {
-	ActorId    int       `gorm:"type:smallint;primaryKey"`
-	FirstName  string    `gorm:"type:varchar(45)"`
-	LastName   string    `gorm:"type:varchar(45)"`
-	LastUpdate time.Time `gorm:"autoCreateTime"`
-}
-
-func (Actor) TableName() string {
-	return "actor"
-}
+// type Actor struct {
+// 	ActorId    int       `gorm:"type:smallint;primaryKey"`
+// 	FirstName  string    `gorm:"type:varchar(45)"`
+// 	LastName   string    `gorm:"type:varchar(45)"`
+// 	LastUpdate time.Time `gorm:"autoCreateTime"`
+// }
 
 type ActorRequest struct {
-	*Actor
+	*models.Actor
 }
 
 func (a *ActorRequest) Bind(r *http.Request) error {
@@ -36,14 +32,14 @@ func (a *ActorRequest) Bind(r *http.Request) error {
 }
 
 type ActorResponse struct {
-	*Actor
+	*models.Actor
 }
 
-func NewActorResponse(actor *Actor) *ActorResponse {
+func NewActorResponse(actor *models.Actor) *ActorResponse {
 	return &ActorResponse{actor}
 }
 
-func NewActorListResponse(actors []*Actor) []render.Renderer {
+func NewActorListResponse(actors []*models.Actor) []render.Renderer {
 	list := []render.Renderer{}
 	for _, actor := range actors {
 		list = append(list, NewActorResponse(actor))

@@ -12,5 +12,7 @@ func Routes() chi.Router {
 	router.Delete("/{id}", DeleteFilm)
 	router.Patch("/{id}", UpdateFilm)
 
+	router.Get("/actors/{id}", GetFilmsByActorId)
+
 	return router
 }

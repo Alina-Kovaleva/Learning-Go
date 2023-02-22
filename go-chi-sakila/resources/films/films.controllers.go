@@ -10,10 +10,11 @@ import (
 	"github.com/go-chi/render"
 	db "tsi.co/go-chi-sakila/database"
 	e "tsi.co/go-chi-sakila/error"
+	"tsi.co/go-chi-sakila/resources/models"
 )
 
 func ListFilms(w http.ResponseWriter, r *http.Request) {
-	var films []*Film
+	var films []*models.Film
 	db.DB.Find(&films)
 	render.RenderList(w, r, NewFilmListResponse(films))
 }
@@ -21,8 +22,8 @@ func ListFilms(w http.ResponseWriter, r *http.Request) {
 func GetFilmById(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	var film Film
-	result := db.DB.First(&film, id)
+	var film models.Film
+	result := db.DB.Model(&models.Film{}).Preload("Actors").First(&film, id)
 	if result.Error != nil {
 		render.Render(w, r, e.ErrInvalidRequest(result.Error))
 		return
@@ -54,7 +55,7 @@ func DeleteFilm(w http.ResponseWriter, r *http.Request) {
 
 	id := chi.URLParam(r, "id")
 
-	var film Film
+	var film models.Film
 	result := db.DB.First(&film, id)
 	if result.Error != nil {
 		render.Render(w, r, e.ErrInvalidRequest(result.Error))
@@ -75,7 +76,7 @@ func UpdateFilm(w http.ResponseWriter, r *http.Request) {
 
 	id := chi.URLParam(r, "id")
 
-	var updatedFilm Film
+	var updatedFilm models.Film
 
 	result := db.DB.First(&updatedFilm, id)
 	if result.Error != nil {
@@ -93,4 +94,29 @@ func UpdateFilm(w http.ResponseWriter, r *http.Request) {
 	log.Println("Actor's info was updated")
 	render.Render(w, r, NewFilmResponse(&updatedFilm))
 	render.Status(r, http.StatusNoContent)
+}
+
+func GetFilmsByActorId(w http.ResponseWriter, r *http.Request) {
+	actorID := chi.URLParam(r, "id")
+
+	var filmActors []models.FilmActor
+	result := db.DB.Where("actor_id = ?", actorID).Find(&filmActors)
+	if result.Error != nil {
+		render.Render(w, r, e.ErrInvalidRequest(result.Error))
+		return
+	}
+
+	var films []*models.Film
+	for _, fa := range filmActors {
+		var film models.Film
+		result := db.DB.First(&film, fa.FilmID)
+		if result.Error != nil {
+			render.Render(w, r, e.ErrInvalidRequest(result.Error))
+			return
+		}
+
+		films = append(films, &film)
+	}
+
+	render.RenderList(w, r, NewFilmListResponse(films))
 }

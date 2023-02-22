@@ -10,10 +10,11 @@ import (
 	"github.com/go-chi/render"
 	db "tsi.co/go-chi-sakila/database"
 	e "tsi.co/go-chi-sakila/error"
+	"tsi.co/go-chi-sakila/resources/models"
 )
 
 func ListActors(w http.ResponseWriter, r *http.Request) {
-	var actors []*Actor
+	var actors []*models.Actor
 	db.DB.Find(&actors)
 	render.RenderList(w, r, NewActorListResponse(actors))
 }
@@ -21,9 +22,9 @@ func ListActors(w http.ResponseWriter, r *http.Request) {
 func GetActorById(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	var actor Actor
+	var actor models.Actor
 
-	result := db.DB.First(&actor, id)
+	result := db.DB.Model(&models.Actor{}).Preload("Films").First(&actor, id)
 
 	if result.Error != nil {
 		render.Render(w, r, e.ErrInvalidRequest(result.Error))
@@ -56,7 +57,7 @@ func DeleteActor(w http.ResponseWriter, r *http.Request) {
 
 	id := chi.URLParam(r, "id")
 
-	var actor Actor
+	var actor models.Actor
 	result := db.DB.First(&actor, id)
 
 	if result.Error != nil {
@@ -78,7 +79,7 @@ func UpdateActor(w http.ResponseWriter, r *http.Request) {
 
 	id := chi.URLParam(r, "id")
 
-	var updatedActor Actor
+	var updatedActor models.Actor
 
 	result := db.DB.First(&updatedActor, id)
 	if result.Error != nil {

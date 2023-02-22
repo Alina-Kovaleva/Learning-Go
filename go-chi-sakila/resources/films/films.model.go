@@ -3,33 +3,33 @@ package films
 import (
 	"errors"
 	"net/http"
-	"time"
 
 	"github.com/go-chi/render"
+	"tsi.co/go-chi-sakila/resources/models"
 )
 
-type Film struct {
-	FilmId             int       `gorm:"column:film_id;primaryKey;autoIncrement"`
-	Title              string    `gorm:"type:varchar(128);not null"`
-	Description        string    `gorm:"type:text"`
-	ReleaseYear        int       `gorm:"type:year"`
-	LanguageID         int       `gorm:"type:tinyint;not null"`
-	OriginalLanguageId int       `gorm:"type:tinyint;default:null"`
-	RentalDuration     int       `gorm:"type:tinyint;not null;default:3"`
-	RentalRate         float64   `gorm:"type:decimal(4,2);not null;default:4.99"`
-	Length             int       `gorm:"type:smallint"`
-	ReplacementCost    float64   `gorm:"type:decimal(5,2);not null;default:19.99"`
-	Rating             string    `gorm:"type:enum('G','PG','PG-13','R','NC-17');default:'G'"`
-	SpecialFeatures    string    `gorm:"type:set('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')"`
-	LastUpdate         time.Time `gorm:"autoCreateTime"`
-}
+// type Film struct {
+// 	FilmId             int       `gorm:"column:film_id;primaryKey;autoIncrement"`
+// 	Title              string    `gorm:"type:varchar(128);not null"`
+// 	Description        string    `gorm:"type:text"`
+// 	ReleaseYear        int       `gorm:"type:year"`
+// 	LanguageID         int       `gorm:"type:tinyint;not null"`
+// 	OriginalLanguageId int       `gorm:"type:tinyint;default:null"`
+// 	RentalDuration     int       `gorm:"type:tinyint;not null;default:3"`
+// 	RentalRate         float64   `gorm:"type:decimal(4,2);not null;default:4.99"`
+// 	Length             int       `gorm:"type:smallint"`
+// 	ReplacementCost    float64   `gorm:"type:decimal(5,2);not null;default:19.99"`
+// 	Rating             string    `gorm:"type:enum('G','PG','PG-13','R','NC-17');default:'G'"`
+// 	SpecialFeatures    string    `gorm:"type:set('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')"`
+// 	LastUpdate         time.Time `gorm:"autoCreateTime"`
+// }
 
-func (Film) TableName() string {
-	return "film"
-}
+// func (Film) TableName() string {
+// 	return "film"
+// }
 
 type FilmRequest struct {
-	*Film
+	*models.Film
 }
 
 func (f *FilmRequest) Bind(r *http.Request) error {
@@ -41,14 +41,14 @@ func (f *FilmRequest) Bind(r *http.Request) error {
 }
 
 type FilmResponse struct {
-	*Film
+	*models.Film
 }
 
-func NewFilmResponse(film *Film) *FilmResponse {
+func NewFilmResponse(film *models.Film) *FilmResponse {
 	return &FilmResponse{film}
 }
 
-func NewFilmListResponse(films []*Film) []render.Renderer {
+func NewFilmListResponse(films []*models.Film) []render.Renderer {
 	list := []render.Renderer{}
 	for _, film := range films {
 		list = append(list, NewFilmResponse(film))
