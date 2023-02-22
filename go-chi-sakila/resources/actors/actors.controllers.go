@@ -65,6 +65,19 @@ func DeleteActor(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	var filmActors []models.FilmActor
+	result = db.DB.Where("actor_id = ?", id).Find(&filmActors)
+	if result.Error != nil {
+		render.Render(w, r, e.ErrInvalidRequest(result.Error))
+		return
+	}
+
+	result = db.DB.Delete(&filmActors)
+	if result.Error != nil {
+		render.Render(w, r, e.ErrInvalidRequest(result.Error))
+		return
+	}
+
 	db.DB.Delete(&actor)
 	log.Println("Actor was delited by id: ", id)
 	render.Status(r, http.StatusNoContent)

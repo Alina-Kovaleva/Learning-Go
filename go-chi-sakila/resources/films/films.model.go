@@ -8,26 +8,6 @@ import (
 	"tsi.co/go-chi-sakila/resources/models"
 )
 
-// type Film struct {
-// 	FilmId             int       `gorm:"column:film_id;primaryKey;autoIncrement"`
-// 	Title              string    `gorm:"type:varchar(128);not null"`
-// 	Description        string    `gorm:"type:text"`
-// 	ReleaseYear        int       `gorm:"type:year"`
-// 	LanguageID         int       `gorm:"type:tinyint;not null"`
-// 	OriginalLanguageId int       `gorm:"type:tinyint;default:null"`
-// 	RentalDuration     int       `gorm:"type:tinyint;not null;default:3"`
-// 	RentalRate         float64   `gorm:"type:decimal(4,2);not null;default:4.99"`
-// 	Length             int       `gorm:"type:smallint"`
-// 	ReplacementCost    float64   `gorm:"type:decimal(5,2);not null;default:19.99"`
-// 	Rating             string    `gorm:"type:enum('G','PG','PG-13','R','NC-17');default:'G'"`
-// 	SpecialFeatures    string    `gorm:"type:set('Trailers','Commentaries','Deleted Scenes','Behind the Scenes')"`
-// 	LastUpdate         time.Time `gorm:"autoCreateTime"`
-// }
-
-// func (Film) TableName() string {
-// 	return "film"
-// }
-
 type FilmRequest struct {
 	*models.Film
 }

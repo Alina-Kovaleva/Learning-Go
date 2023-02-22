@@ -62,22 +62,35 @@ func DeleteFilm(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	var filmActors []models.FilmActor
+	result = db.DB.Where("film_id = ?", id).Find(&filmActors)
+	if result.Error != nil {
+		render.Render(w, r, e.ErrInvalidRequest(result.Error))
+		return
+	}
+
+	result = db.DB.Delete(&filmActors)
+	if result.Error != nil {
+		render.Render(w, r, e.ErrInvalidRequest(result.Error))
+		return
+	}
+
 	db.DB.Delete(&film)
 	log.Println("Film was delited by id: ", id)
 	render.Status(r, http.StatusNoContent)
 }
 
 func UpdateFilm(w http.ResponseWriter, r *http.Request) {
+
 	var data FilmRequest
 	if err := render.Bind(r, &data); err != nil {
 		render.Render(w, r, e.ErrInvalidRequest(err))
 	}
-	film := data.Film
 
+	film := data.Film
 	id := chi.URLParam(r, "id")
 
 	var updatedFilm models.Film
-
 	result := db.DB.First(&updatedFilm, id)
 	if result.Error != nil {
 		render.Render(w, r, e.ErrInvalidRequest(result.Error))
@@ -120,3 +133,15 @@ func GetFilmsByActorId(w http.ResponseWriter, r *http.Request) {
 
 	render.RenderList(w, r, NewFilmListResponse(films))
 }
+
+// Get the actor ID from the URL parameter.
+// actorID := chi.URLParam(r, "id")
+// var actor Actor
+// db.DB.First(&actor, actorID)
+// json.NewDecoder(r.Body).Decode(&actor)
+
+// Uppercase the first name and last name
+// actor.FirstName = strings.ToUpper(actor.FirstName)
+// actor.LastName = strings.ToUpper(actor.LastName)
+// db.DB.Save(&actor)    w.Header().Set("Content-Type", "application/json")
+// json.NewEncoder(w).Encode(actor)
