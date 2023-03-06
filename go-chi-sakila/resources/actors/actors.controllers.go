@@ -74,10 +74,12 @@ func DeleteActor(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result = db.DB.Delete(&filmActors)
-	if result.Error != nil {
-		render.Render(w, r, e.ErrInvalidRequest(result.Error))
-		return
+	if len(filmActors) != 0 {
+		result = db.DB.Delete(&filmActors)
+		if result.Error != nil {
+			render.Render(w, r, e.ErrInvalidRequest(result.Error))
+			return
+		}
 	}
 
 	db.DB.Delete(&actor)

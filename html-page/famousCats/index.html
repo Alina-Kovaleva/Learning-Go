@@ -1,0 +1,466 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Famous Cats</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="./img/logo.svg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <a href="#home">
+          <img class="logo" src="./img/logo.svg" />
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#garfield" title="garfield">Carfield</a></li>
+            <li><a href="#cheshire" title="cheshire">Cheshire Cat</a></li>
+            <li>
+              <a href="#pussinboots" title="pussinboots">Puss in boots</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <nav>
+          <ul>
+            <li><a href="#tictactoe" title="news">Mini game</a></li>
+            <li><a href="#news" title="news">News</a></li>
+            <li><a href="#contacts" title="contacts">Contacts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <div id="home"></div>
+      <section id="top3">
+        <h2 class="top3-title">Top 3 Famous Cats</h2>
+        <div class="top3-grid">
+          <div>
+            <a href="#garfield" class="image-link">
+              <img
+                src="https://is4-ssl.mzstatic.com/image/thumb/xcAfvUEvw1LsrXMHcqpsrw/1200x675mf.jpg"
+                alt="Garfield"
+            /></a>
+          </div>
+          <div>
+            <a href="#cheshire" class="image-link"
+              ><img
+                src="https://images.fineartamerica.com/images-medium-large-5/cheshire-cat-movie-poster-prints.jpg"
+                alt="Cheshire Cat"
+            /></a>
+          </div>
+          <div>
+            <a href="#pussinboots" class="image-link"
+              ><img
+                src="https://apicms.thestar.com.my/uploads/images/2022/06/16/1625437.jpg"
+                alt="Puss in Boots"
+            /></a>
+          </div>
+        </div>
+      </section>
+      <div class="content">
+        <div class="articles">
+          <main>
+            <div id="garfield"></div>
+            <section>
+              <div class="article-head">
+                <h2 class="article-title">Garfield</h2>
+                <img
+                  src="https://media.tenor.com/KTM4P3IIyb0AAAAC/garfield-lasagna.gif"
+                  alt="Garfield enjoys the smell of lasanya"
+                />
+              </div>
+              <div class="article-body">
+                <p>
+                  Garfield is a fictional cat and the main character in the
+                  comic strip created by Jim Davis. He first appeared in 1978
+                  and has since become one of the most iconic cartoon cats of
+                  all time. Garfield is known for his love of lasagna, sleeping,
+                  and hating Mondays.
+                </p>
+                <p>
+                  Garfield lives with his owner, Jon Arbuckle, and Jon's dog,
+                  Odie. His favorite place to sleep is in his bed, which is
+                  located next to a window where he can see birds outside. He
+                  also loves to watch TV and eat his favorite food, lasagna.
+                </p>
+                <p>
+                  Garfield's personality is often described as lazy, cynical,
+                  and sarcastic. He is known for his witty one-liners and his
+                  disdain for most things. However, deep down, Garfield is a
+                  caring cat who loves his owner and his friends.
+                </p>
+                <table>
+                  <tr>
+                    <td>Favorite Food:</td>
+                    <td>Lasagna</td>
+                  </tr>
+                  <tr>
+                    <td>Favorite Activity:</td>
+                    <td>Sleeping</td>
+                  </tr>
+                  <tr>
+                    <td>Least Favorite Day:</td>
+                    <td>Monday</td>
+                  </tr>
+                </table>
+              </div>
+              <div>
+                <button class="garfield-quote-btn" onclick="toggleAudio(event)">
+                  Play Garfield Quote
+                </button>
+                <audio id="garfield-quote">
+                  <source
+                    src="./audio/I hate Mondays- Garfield.mp3"
+                    type="audio/mp3"
+                  />
+                </audio>
+              </div>
+            </section>
+
+            <div id="cheshire"></div>
+            <section>
+              <div class="article-head">
+                <h2 class="article-title">Cheshire Cat</h2>
+                <img
+                  src="https://2.bp.blogspot.com/-VOr8wRphVks/XdcUhN8ur1I/AAAAAAAAOMk/JnalaGnoUQou9CnCVwWPuAfEnKuL_GCxQCLcBGAsYHQ/s1600/source.gif"
+                  alt="Cheshire Cat"
+                />
+              </div>
+              <div class="article-body">
+                <p>
+                  The Cheshire Cat is a fictional cat from Lewis Carroll's
+                  Alice's Adventures in Wonderland. He first appeared in 1865
+                  and has since become one of the most iconic characters in
+                  children's literature. The Cheshire Cat is known for his
+                  mischievous grin and disappearing and reappearing at will.
+                </p>
+                <p>
+                  According to the book, the Cheshire Cat is a resident of
+                  Wonderland and often helps Alice on her adventures. He has a
+                  tendency to speak in riddles and give cryptic advice, which
+                  often confuses Alice but ultimately helps her to solve
+                  problems.
+                </p>
+                <p>
+                  The Cheshire Cat is also known for his ability to disappear
+                  and reappear at will. This often confuses and frustrates
+                  Alice, but she eventually learns to accept his unpredictable
+                  behavior and use it to her advantage.
+                </p>
+                <table>
+                  <tr>
+                    <td>Favorite Expression:</td>
+                    <td>Grin</td>
+                  </tr>
+                  <tr>
+                    <td>Special Ability:</td>
+                    <td>Disappearing and Reappearing</td>
+                  </tr>
+                  <tr>
+                    <td>Residence:</td>
+                    <td>Wonderland</td>
+                  </tr>
+                  <tr>
+                    <td>Friends:</td>
+                    <td>Alice, the Mad Hatter, and the White Rabbit</td>
+                  </tr>
+                  <tr>
+                    <td>Enemies:</td>
+                    <td>The Queen of Hearts</td>
+                  </tr>
+                </table>
+              </div>
+            </section>
+
+            <div id="pussinboots"></div>
+            <section>
+              <div class="article-head">
+                <h2 class="article-title">Puss in Boots</h2>
+                <div class="article-images">
+                  <!-- <img
+                    src="https://gifdb.com/images/high/puss-in-boots-cute-face-m20e7zel9zr97k1l.gif"
+                    alt="Puss in Boots"
+                  /> -->
+                  <img
+                    src="https://www.lovethispic.com/uploaded_images/148414-Merry-Christmas-From-Puss-In-Boots.gif"
+                    alt="Puss in Boots"
+                  />
+                </div>
+              </div>
+              <div class="article-body">
+                <p>
+                  Puss in Boots is a fictional cat from the fairy tale by
+                  Charles Perrault. He is known for his bravery, cunning, and
+                  love of adventure.
+                </p>
+                <p>
+                  In the story, Puss in Boots is a clever cat who helps his
+                  master, a poor miller's son, to gain wealth and marry a
+                  princess. Puss in Boots uses his quick thinking and cunning to
+                  trick the king and the ogre, ultimately helping his master to
+                  achieve his goals.
+                </p>
+                <p>
+                  Puss in Boots is also known for his iconic look, which
+                  includes a feathered hat and a pair of boots. This has made
+                  him a popular character in popular culture, appearing in
+                  movies, TV shows, and video games.
+                </p>
+                <table>
+                  <tr>
+                    <td>Favorite Activity:</td>
+                    <td>Adventuring</td>
+                  </tr>
+                  <tr>
+                    <td>Special Ability:</td>
+                    <td>Quick Thinking and Cunning</td>
+                  </tr>
+                  <tr>
+                    <td>Friends:</td>
+                    <td>The Miller's Son and the Princess</td>
+                  </tr>
+                  <tr>
+                    <td>Enemies:</td>
+                    <td>The King and the Ogre</td>
+                  </tr>
+                </table>
+              </div>
+            </section>
+            <div id="news"></div>
+            <section>
+              <div class="article-head">
+                <h2 class="article-title">The news of the cat world.</h2>
+              </div>
+              <div class="article-body news-section-content">
+                <article id="news1">
+                  <h3 class="news-title">Garfield gets a NEW Movie</h3>
+                  <p>
+                    Garfield, the lasagna-loving orange tabby, is coming back to
+                    the big screen! After a 15-year hiatus, Garfield is set to
+                    return in a new feature-length movie. Fans of the comic
+                    strip and previous movies will be excited to see what antics
+                    Garfield gets up to this time around.
+                  </p>
+                  <p>
+                    The new Garfield movie is expected to be a mix of
+                    live-action and CGI animation. With state-of-the-art
+                    technology, Garfield and his friends will be brought to life
+                    in a new and exciting way. The movie promises to be full of
+                    humor, heart, and plenty of lasagna.
+                  </p>
+                  <p>
+                    The release date for the new Garfield movie has not yet been
+                    announced, but fans are eagerly awaiting any news about this
+                    long-awaited return. With Garfield being a beloved character
+                    for generations, there's no doubt that the new movie will be
+                    a hit with audiences of all ages. Stay tuned for more
+                    updates on this exciting development!
+                  </p>
+                </article>
+                <article class="article-news" id="news2">
+                  <h3 class="news-title">
+                    Puss in Boots to Star in a New Animated Series
+                  </h3>
+                  <p>
+                    The beloved feline hero Puss in Boots is returning to our
+                    screens in a brand new animated series. Set to premiere
+                    later this year, the show promises to bring us even more
+                    adventure, wit, and charm from the swashbuckling cat.
+                  </p>
+                  <p>
+                    Puss in Boots has been a fan favorite since his first
+                    appearance in the hit movie Shrek. Now, with his own series,
+                    we'll get to see even more of his iconic character traits:
+                    his love of adventure, his quick thinking, and his loyalty
+                    to his friends.
+                  </p>
+                  <p>
+                    The new series will follow Puss as he embarks on daring
+                    escapades, battles fierce foes, and uses his signature sword
+                    skills to save the day. With the same creative team behind
+                    the hit movie franchise, fans can expect the same
+                    high-quality animation and storytelling they've come to
+                    love. Get ready to join Puss in Boots on his latest
+                    adventures!
+                  </p>
+                </article>
+                <article class="article-news" id="news3">
+                  <h3 class="news-title">
+                    Cheshire Cat Appears in New Video Game
+                  </h3>
+                  <p>
+                    Lewis Carroll's beloved Cheshire Cat is making a comeback in
+                    a brand new video game. The classic literary character,
+                    known for his mischievous grin and enigmatic personality,
+                    will be a featured character in an upcoming adventure game
+                    set in a whimsical fantasy world.
+                  </p>
+                  <p>
+                    Players will have the chance to interact with the Cheshire
+                    Cat as they navigate through the game's various levels and
+                    puzzles. Whether the cat is offering helpful advice or
+                    leading players down a rabbit hole of confusion, his
+                    appearances are sure to be a highlight of the game.
+                  </p>
+                  <p>
+                    This isn't the first time the Cheshire Cat has made an
+                    appearance in the gaming world - he's previously been
+                    featured in games ranging from puzzle titles to
+                    action-adventure games. However, this new game promises to
+                    offer a fresh take on the character, with updated graphics
+                    and gameplay that will bring the world of Wonderland to life
+                    like never before.
+                  </p>
+                  <p>
+                    Fans of the Cheshire Cat and Lewis Carroll's beloved novel
+                    Alice's Adventures in Wonderland have been eagerly
+                    anticipating this new video game. With its charming visuals,
+                    engaging gameplay, and memorable characters, it's sure to be
+                    a hit with gamers and book lovers alike. So grab your
+                    controller and get ready to follow the Cheshire Cat down the
+                    rabbit hole once again!
+                  </p>
+                </article>
+                <article class="article-news" id="news4">
+                  <h3 class="news-title">Felix the Cat Gets a Reboot</h3>
+                  <p>
+                    Felix the Cat, the beloved cartoon character from the silent
+                    era, is getting a new lease on life with a reboot set to hit
+                    screens later this year. The animated series will follow
+                    Felix and his friends as they go on new adventures and get
+                    into all sorts of mischief. Fans of the classic character
+                    can look forward to the same zany humor and offbeat charm
+                    that made Felix a household name.
+                  </p>
+                  <p>
+                    The reboot will introduce Felix to a new generation of
+                    viewers while also appealing to longtime fans who grew up
+                    watching the original series. The show's creators are
+                    promising to stay true to the spirit of the classic
+                    character while also giving him a modern update. With new
+                    animation techniques and a fresh take on the classic
+                    storylines, Felix the Cat is sure to captivate audiences of
+                    all ages. Stay tuned for more updates on this exciting
+                    reboot.
+                  </p>
+                </article>
+              </div>
+            </section>
+          </main>
+        </div>
+        <div class="side-bar">
+          <aside class="aside">
+            <h2>News</h2>
+            <ul>
+              <li><a href="#news1">Garfield gets a NEW Movie</a></li>
+              <li>
+                <a href="#news2"
+                  >Puss in Boots to Star in a New Animated Series</a
+                >
+              </li>
+              <li>
+                <a href="#news3">Cheshire Cat Appears in New Video Game</a>
+              </li>
+              <li><a href="#news4">Felix the Cat Gets a Reboot</a></li>
+            </ul>
+            <div class="carousel">
+              <div class="carousel-item">
+                <a
+                  class="weatherwidget-io"
+                  href="https://forecast7.com/en/52d504d81/wormer/"
+                  data-label_1="WORMER"
+                  data-label_2="WEATHER"
+                  data-icons="Climacons Animated"
+                  data-days="3"
+                  data-theme="original"
+                  >WORMER WEATHER</a
+                >
+              </div>
+              <div class="carousel-item">
+                <a
+                  class="weatherwidget-io"
+                  href="https://forecast7.com/en/51d51n0d13/london/"
+                  data-label_1="LONDON"
+                  data-label_2="WEATHER"
+                  data-icons="Climacons Animated"
+                  data-days="3"
+                  data-theme="original"
+                  >LONDON WEATHER</a
+                >
+              </div>
+              <button class="carousel-prev">&lt;</button>
+              <button class="carousel-next">&gt;</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <section class="game-section" id="tictactoe">
+        <h2 class="title">Tic-Tac-Toe with Famous Cats</h2>
+        <div class="game-board">
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+          <div class="game-tile"></div>
+        </div>
+        <button class="refresh-game" onclick="refreshButton()">
+          Refresh the game!
+        </button>
+        <div class="winner-message"></div>
+      </section>
+      <section class="contacts-section" id="contacts">
+        <h2 class="title">Contacts</h2>
+        <div class="contacts-text">
+          <h4>Do you like what you see?</h4>
+          <h5>
+            Write to me and I'll get in touch with you as soon as possible.
+          </h5>
+        </div>
+        <form action="#" method="post" target="_blank">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter you name"
+            required
+          />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter you email"
+            required
+          />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="8" required></textarea>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2023 Famous Cats. All rights reserved.</p>
+    </footer>
+    <script src="index.js"></script>
+    <script src="./weather-widget.js"></script>
+  </body>
+</html>

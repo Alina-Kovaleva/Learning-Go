@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+  }
+  header {
+    background-color: #f2f2f2;
+    padding: 1rem;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  footer {
+    background-color: #f2f2f2;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+  }

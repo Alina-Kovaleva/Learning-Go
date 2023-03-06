@@ -2,6 +2,7 @@ package filmactor
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/render"
@@ -40,6 +41,7 @@ func CreateFilmActor(w http.ResponseWriter, r *http.Request) {
 func DeleteFilmActor(w http.ResponseWriter, r *http.Request) {
 	var data FilmActorRequest
 	if err := render.Bind(r, &data); err != nil {
+		fmt.Println(err)
 		render.Render(w, r, e.ErrInvalidRequest(err))
 		return
 	}
